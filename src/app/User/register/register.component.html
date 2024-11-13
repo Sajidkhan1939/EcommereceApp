@@ -1,0 +1,35 @@
+<form class="login" [formGroup]="Registerform" (ngSubmit)="onSubmit()">
+  <h2>Welcome, User!</h2>
+  <p>Please Register</p>
+  <input type="text" placeholder="User Name" formControlName="username" />
+  <div *ngIf="Registerform.controls.username.invalid && 
+  (Registerform.controls.username.touched ||
+   Registerform.controls.username.dirty)">
+   <small *ngIf="Registerform.controls.username.errors?.['required']">Username field is required</small>
+   <small *ngIf="Registerform.controls.username.errors?.['minlength']">Username must be at least 5 characters long</small>
+   <small *ngIf="Registerform.controls.username.errors?.['maxlength']">Username cannot exceed 8 characters</small>
+   </div>
+  <input type="email" placeholder="Email Address" formControlName="email" />
+  <div *ngIf="Registerform.controls.email.invalid && 
+                 (Registerform.controls.email.touched || Registerform.controls.email.dirty)">
+      <small *ngIf="Registerform.controls.email.errors?.['required']">Email field is required</small>
+      <small *ngIf="Registerform.controls.email.errors?.['email']">Invalid email format</small>
+    </div>
+  <input type="number" placeholder="Phone Number" formControlName="phone" />
+  <div *ngIf="Registerform.controls.phone.invalid && 
+                 (Registerform.controls.phone.touched || Registerform.controls.phone.dirty)">
+      <small *ngIf="Registerform.controls.phone.errors?.['required']">Phone number is required</small>
+      <small *ngIf="Registerform.controls.phone.errors?.['pattern']">Phone number must be 10 digits</small>
+    </div>
+  <input type="password" placeholder="Password" formControlName="password" />
+  <div *ngIf="Registerform.controls.password.invalid && 
+                 (Registerform.controls.password.touched || Registerform.controls.password.dirty)">
+      <small *ngIf="Registerform.controls.password.errors?.['required']">Password field is required</small>
+      <small *ngIf="Registerform.controls.password.errors?.['minlength']">Password must be at least 5 characters long</small>
+    </div>
+  <input type="submit" [disabled]="!Registerform.valid" value="Register" />
+  <div class="links">
+    <a routerLink="/login">Already have an account</a>
+    <a routerLink="/login">Login</a>
+  </div>
+</form>

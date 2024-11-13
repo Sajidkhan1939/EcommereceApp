@@ -1,0 +1,23 @@
+<form class="login" [formGroup]="login" (ngSubmit)="onSubmit()">
+    <h2>Welcome, User!</h2>
+    <p>Please log in</p>
+    <input type="text" placeholder="User Name" formControlName="username"/>
+    <div *ngIf="login.controls.username.invalid && 
+  (login.controls.username.touched ||
+   login.controls.username.dirty)">
+   <small *ngIf="login.controls.username.errors?.['required']">Username field is required</small>
+   <small *ngIf="login.controls.username.errors?.['minlength']">Username must be at least 5 characters long</small>
+   <small *ngIf="login.controls.username.errors?.['maxlength']">Username cannot exceed 8 characters</small>
+   </div>
+    <input type="password" placeholder="Password" formControlName="password"/>
+    <div *ngIf="login.controls.password.invalid && 
+                 (login.controls.password.touched || login.controls.password.dirty)">
+      <small *ngIf="login.controls.password.errors?.['required']">Password field is required</small>
+      <small *ngIf="login.controls.password.errors?.['minlength']">Password must be at least 5 characters long</small>
+    </div>
+    <input type="submit" value="Log In" [disabled]="!login.valid"/>
+    <div class="links">
+      <a href="#">Forgot password</a>
+      <a routerLink="/register">Register</a>
+    </div>
+  </form>
